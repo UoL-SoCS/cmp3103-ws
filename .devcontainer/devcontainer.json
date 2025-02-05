@@ -11,6 +11,7 @@
 			"onAutoForward": "openBrowser"
 		}
 	},
+	"runArgs": ["--rm"],
 
 	"postStartCommand": "/opt/entrypoint.sh /bin/true; .devcontainer/post-create.sh",
 
