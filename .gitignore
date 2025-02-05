@@ -50,3 +50,5 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
+
+cmp3103m_ros2_code_fragments/
