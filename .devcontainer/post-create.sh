@@ -22,6 +22,7 @@ LOCAL_SETUP_FILE=`pwd`/install/setup.bash
 
 add_config_if_not_exist "if [ -r $LOCAL_SETUP_FILE ]; then source $LOCAL_SETUP_FILE; fi"
 
+echo "Waiting for display to open"
 sleep 10
 
 DISPLAY=:1 xfconf-query -c xfce4-desktop -p $(xfconf-query -c xfce4-desktop -l | grep "workspace0/last-image") -s /usr/share/backgrounds/xfce/lcas.jpg  || true
