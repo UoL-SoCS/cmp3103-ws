@@ -40,6 +40,9 @@ class VideoPublisher(Node):
             # Convert the frame to a ROS Image message
             try:
                 ros_image = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
+                # set header correctly
+                ros_image.header.stamp = self.get_clock().now().to_msg()
+                ros_image.header.frame_id = 'video_src'
                 self.publisher.publish(ros_image)
             except Exception as e:
                 self.get_logger().error(f'Error converting frame: {str(e)}')
