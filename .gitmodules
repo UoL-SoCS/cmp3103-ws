@@ -1,0 +1,6 @@
+[submodule "teaching"]
+	path = teaching
+	url = https://github.com/LCAS/teaching
+[submodule "teaching.wiki"]
+	path = teaching.wiki
+	url = https://github.com/LCAS/teaching.wiki.git
