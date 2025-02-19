@@ -4,3 +4,6 @@
 [submodule "teaching.wiki"]
 	path = teaching.wiki
 	url = https://github.com/LCAS/teaching.wiki.git
+[submodule "src/ros2-line-follower"]
+	path = src/ros2-line-follower
+	url = https://github.com/gabrielnhn/ros2-line-follower.git
