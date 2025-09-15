@@ -7,15 +7,11 @@
 		"context": ".."
 	},
 
-	"forwardPorts": [5801,9090],
+	"forwardPorts": [5801],
 	"portsAttributes": {
 		"5801": {
 			"label": "desktop",
 			"onAutoForward": "openBrowser"
-		},
-		"9090": {
-			"label": "ros2-web-bridge",
-			"protocol": "http"
 		}
 	},
 
