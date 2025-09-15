@@ -4,7 +4,7 @@
 	"name": "L-CAS Humble CUDA-OpenGL Teaching Devcontainer",
 	"build": {
 		"dockerfile": "Dockerfile",
-		"context": "."
+		"context": ".."
 	},
 
 	"forwardPorts": [5801],

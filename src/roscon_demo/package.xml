@@ -9,6 +9,7 @@
 
   <depend>uol_tidybot</depend>
   <depend>nav2_bringup</depend>
+  <depend>rosbridge_suite</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
