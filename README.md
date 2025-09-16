@@ -1,84 +1,171 @@
-## ROS2 Workspace Template
+# RosCon25 Workshop Demo: A Robot in a Box
 
-This repository serves as a template for creating ROS2 packages, equipped with a basic CI workflow and devcontainer configuration.
+## Teaching Robotics with ROS 2: GPU-Accelerated DevContainers for Education
 
-### Development Environment Setup
+Welcome to the **RosCon25 workshop demonstration** showcasing a comprehensive GPU-accelerated ROS2 development environment delivered as a DevContainer. This demo is part of the **"Teaching Robotics with ROS 2: Lessons, Platforms, and Perspectives"** workshop at [RosCon UK 2025](https://ros2edu.github.io/).
 
-To begin development in a containerized environment:
+### 🎯 Workshop Overview
 
-1. **Use this repo as a template (You only do this once!):**
-   The best way to work with this repo is to use it as a template for your ROS package development, to do so, in the top right corner select `Use this template` and then `Create new repository`:
-   <img width="715" alt="image" src="https://github.com/user-attachments/assets/1d60f491-5e35-4bed-be62-3d35aba7e6b7">
+This repository demonstrates how containerized ROS2 environments can transform robotics education by providing students with a fully configured development environment **in under three minutes** from initial setup. The platform runs seamlessly across Windows, Linux, and Mac hosts while maintaining professional development workflows through Visual Studio Code integration.
 
-   Alternatively, you may choose to "Fork" the repository ([read here about the differences](https://docs.github.com/en/enterprise-server@2.22/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)). However, if you create a "fork" your repository will be public, which you may want to avoid for assessed work.
+**Learn more about the workshop:** [https://ros2edu.github.io/](https://ros2edu.github.io/)
 
-   Then, in the next step specify the owner (yourself) and the repository name (e.g. `cmp3103`) you want to create as shown below (You are recommended to make this a _private_ repository until the marking of the assessment is complete):
+### 🏗️ DevContainer Architecture
 
-   <img width="735" alt="image" src="https://github.com/user-attachments/assets/8b48fb41-d389-432b-80c4-9f623bc3f793">
+![DevContainer Architecture](docs/devcontainer_architecture.png)
 
-   You will end up having your own repository, which looks something like this:
+Our containerized solution features:
+- **GPU-accelerated 3D visualization** with VirtualGL and NVIDIA runtime support
+- **Virtual desktop with web-based access** eliminating complex local installations
+- **Zenoh bridging technology** to connect containerized environments to real-world robots
+- **Seamless simulation-to-hardware transition** for comprehensive learning experiences
 
-   <img width="923" alt="image" src="https://github.com/user-attachments/assets/dacc7fa2-43d5-46ce-94cb-1231ab63f4f3">
+## 🚀 Quick Start Options
+
+### Option 1: GitHub Codespaces (Fastest)
+1. **go to** https://github.com/UoL-SoCS/cmp3103-ws/tree/roscon25
+1. **Click the green "Code" button** in this repository
+2. **Select "Codespaces" tab**
+3. **Click "Create codespace on roscon25"**
+4. Wait for the environment to build (~5 minutes)
+5. **Jump to [Running the Demo](#-running-the-demo)**
+
+### Option 2: Visual Studio Code with DevContainers
+
+#### Prerequisites
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+#### Setup Steps
+1. **Clone this repository with the specific branch:**
+   ```bash
+   git clone -b roscon25 https://github.com/UoL-SoCS/cmp3103-ws.git
+   cd cmp3103-ws
+   ```
+
+2. **Open in VSCode:**
+   ```bash
+   code .
+   ```
+
+3. **Reopen in Container:**
+   - When prompted, click **"Reopen in Container"**
+   - Or use Command Palette (`Ctrl+Shift+P`) → "Dev Containers: Reopen in Container"
+   - Wait for container build (~5 minutes on first run, downloading the full image with all dependencies)
+
+4. **Verify Container Environment:**
+   Look for "Dev Container: ..." in the bottom-left corner of VSCode
+
+## 🤖 Running the Demo
+
+### Step 1: Access the Virtual Desktop
+
+1. **Navigate to the PORTS tab** in VSCode/Codespaces
+2. **Click on the "desktop" URL** (usually `localhost:5801` or a tunnel address)
+3. **Click "Connect"** when prompted
+4. **Enable "Remote Resizing"** for automatic window scaling (see [USAGE.md](USAGE.md) for more details)
+
+### Step 2: Build the Workspace
+
+Open a terminal in VSCode and run:
+
+```bash
+# Build the ROS2 workspace
+colcon build
+
+# Source the environment
+source install/setup.bash
+```
+
+### Step 3: Launch the TidyBot Navigation Demo
+
+```bash
+# Launch the complete navigation demo
+ros2 launch roscon_demo tidybot_navigation.launch.py
+```
+
+This command will automatically:
+- 🏠 Start the TidyBot simulation environment (Gazebo)
+- 🗺️ Launch SLAM Toolbox for real-time mapping
+- 🧭 Initialize Nav2 navigation stack for autonomous navigation
+- 🎯 Open RViz for visualization and goal setting
+- 🔴 Generate 10 red objects in the environment
+- 🟢 Generate 10 green objects in the environment
+
+### Step 4: Interact with the Demo (in the virtual desktop)
+
+1. **In RViz (opens automatically):**
+   - Use the "2D Goal Pose" tool to set navigation targets
+   - Watch the robot autonomously navigate around obstacles
+   - Observe real-time SLAM mapping as the robot explores
+
+2. **In Gazebo (virtual desktop):**
+   - View the 3D simulation environment
+   - Observe the TidyBot robot and scattered objects
+   - Monitor the robot's sensor data and behavior
+
+### 🎮 Advanced Demo Features
+
+#### Custom Launch Options
+```bash
+# Launch without navigation (SLAM only)
+ros2 launch roscon_demo tidybot_navigation.launch.py navigation:=false
+
+# Launch without SLAM (use pre-built map)
+ros2 launch roscon_demo tidybot_navigation.launch.py slam:=false
+
+# Launch minimal setup (no RViz)
+ros2 launch roscon_demo tidybot_navigation.launch.py rviz:=false
+```
+
+#### Manual Object Generation
+```bash
+# Generate additional red objects
+ros2 run uol_tidybot generate_objects --ros-args -p red:=true -p n_objects:=5
+
+# Generate additional green objects  
+ros2 run uol_tidybot generate_objects --ros-args -p red:=false -p n_objects:=5
+```
+
+### ✅ What This Solves
+- **Installation complexity:** Zero local ROS2 setup required
+- **Platform compatibility:** Works across Windows, Mac, and Linux
+- **Hardware requirements:** No dedicated robotics lab needed
+- **Assessment scalability:** Consistent environments for all students
+- **Remote learning:** Full functionality in distributed education
+
+### 🎓 Learning Outcomes
+Students gain hands-on experience with:
+- ROS2 launch systems and package management
+- SLAM (Simultaneous Localization and Mapping)
+- Navigation stack configuration and tuning
+- 3D simulation environments (Gazebo)
+- Visualization tools (RViz)
+- Professional development workflows (VSCode + Git)
+
+## 🔧 For Educators
+
+### Customizing the Demo
+- **Add new packages:** Place them in the `src/` directory
+- **Modify launch files:** Edit `src/roscon_demo/launch/`
+- **Configure dependencies:** Update `src/roscon_demo/package.xml`
+- **Adjust parameters:** Modify Nav2 configuration files
+
+### Deployment Strategies
+1. **Individual assignments:** Students fork this repository
+2. **Classroom exercises:** Use GitHub Codespaces for instant access
+3. **Assessment tasks:** Consistent environment ensures fair evaluation
+4. **Remote workshops:** Perfect for distributed learning scenarios
+
+## 🌟 Workshop Context
+
+This demo is featured in Prof. Marc Hanheide's lightning talk: **"A robot in a Box: Adventures in GPU-accelerated ROS2 devcontainers for education and assessment"** at the ROS Education Workshop.
 
 
-2. **Open in Visual Studio Code:**
-   Open your new repository in VSCode. The easiest way is to go to the git tab in VSCode and select `Clone Repository` and then copy the URL to the repository into the dialog that opens, e.g. `https://github.com/marc-hanheide/my-cmp3103-ws` in the example case. Then, choose the local folder you want to repository to be checked out into and choose to open the new workspace.
 
-   <img width="577" alt="image" src="https://github.com/user-attachments/assets/71c78415-4461-464a-8b65-3ec046108846">
+**Learn more:** [https://ros2edu.github.io/](https://ros2edu.github.io/)
 
-   After cloning the repository and opening it, VSCode will prompt you if you want to "Reopen in Container", as it has found a devContainer configuration. You should say "yes". Alternatively if you don't see the prompt, you can use the command palette (`Ctrl+Shift+P`) and search for the "Reopen in Container" command.
+## 📄 License
 
-   <img width="451" alt="image" src="https://github.com/user-attachments/assets/6f4d2df4-bcb5-4887-8009-427aab59037c">
-
-3. **Container Setup:**
-   Once reopened in the container, VSCode will initiate the building process and pull all necessary dependencies. You can monitor the building log within VSCode. This may take a while (in particular if you have not previouly used the computer with the container), as you entire image with all installations is being pulled.
-   
-   <img width="485" alt="image" src="https://github.com/user-attachments/assets/c3b8202c-dc8e-4f04-a80d-09bc1719a7d0">
-
-
-5. **Verify Container Environment:**
-   After the build completes, VSCode will connect to the container. You can verify that you are within the container environment.
-
-   <img width="1746" alt="image" src="https://github.com/user-attachments/assets/47f9f505-d913-4b2c-a805-3d3ef0809751">
-   
-   See bottom left, saying "Dev Container":
-   <img width="311" alt="image" src="https://github.com/user-attachments/assets/04662426-e7ff-4a00-9838-14e125767895">
-
-   You can now open the virtual desktop (see next section) or a terminal in VSCode inside the DevContainer:
-   
-   <img width="1158" alt="image" src="https://github.com/user-attachments/assets/088b150f-5cb7-4c0d-b18a-448944f15ffa">
-
-
-### Devcontainer Features
-
-The devcontainer includes a virtual 3D accelerated (if the host has an NVIDIA GPU and docker runtime installed) desktop.
-
-
-1. **Accessing the Desktop Interface:**
-   Open the user interface by navigating to the `PORTS` tab in VSCode, selected the URL labeled `desktop` to open it in your browser. You can also right-click on the URL it and choose "Preview in Editor" to have that desktop shown directly in VSCode, instead.
-
-   <img width="934" alt="image" src="https://github.com/user-attachments/assets/d90e90ed-3d46-465a-8589-0f96fee5cff2">
-
-2. **Complete the connection:**
-   Click on "Connect".
-
-   <img width="404" alt="image" src="https://github.com/user-attachments/assets/33a370cb-6063-4242-ba34-c4997050dcae">
-
-   Your desktop will open. If you want the size of this virtual desktop to adjust automatically to your browser window, choose "Remote Resizing" in the options on the left hand side.
-
-   <img width="276" alt="image" src="https://github.com/user-attachments/assets/d455cb56-4eda-400d-bef2-bf1aa2ef1ca0">
-
-### Enjoy Development!
-
-By leveraging this setup, you can develop on a remote machine with a lightweight desktop interface. Magic! Furthermore, this template package provides very nice ROS2 functionality like syntax highlight and template code generation. 
-
-You can now use the VSCode terminal to launch all the commands you need and run code directly from VSCode in your devcontainer. Any windows you open from the terminal or from your code will appear in the virtual desktop (i.e. you Browser).
-
-**All ROS2 packages should go into the `src/` folder. Create them with `ros2 pkg create...`.**
-
-**The devcontainer installs all dependencies of the workspace automatically as much as possible, and also tries to build the workspace when it is created, to speed up later colcon builds.**
-
-### References
-
-1. [cmp3103-ws](https://github.com/UoL-SoCS/cmp3103-ws)
-2. [Get Started with Dev Containers in VS Code](https://youtu.be/b1RavPr_878?si=ADepc_VocOHTXP55)
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
