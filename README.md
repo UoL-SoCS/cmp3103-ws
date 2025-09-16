@@ -172,6 +172,12 @@ This demo is featured in Prof. Marc Hanheide's lightning talk: **"A robot in a B
 
 **Learn more:** [https://ros2edu.github.io/](https://ros2edu.github.io/)
 
+## Resources:
+* Try yourself (e.g. in codespaces): https://github.com/UoL-SoCS/cmp3103-ws/tree/roscon25 
+* Our instructions for students to use it: https://github.com/LCAS/teaching/wiki/CMP3103 
+* The Lincoln Centre for Autonomous Systems (L-CAS):https://lcas.lincoln.ac.uk/ 
+
+
 ## 📄 License
 
 This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
