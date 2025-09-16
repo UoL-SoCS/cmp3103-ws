@@ -174,7 +174,7 @@ This demo is featured in Prof. Marc Hanheide's lightning talk: **"A robot in a B
 
 ## Resources:
 * Try yourself (e.g. in codespaces): https://github.com/UoL-SoCS/cmp3103-ws/tree/roscon25 
-* Useful ROS2 workspace repository tempalte: https://github.com/LCAS/ros2_pkg_template/ 
+* Useful ROS2 workspace repository template: https://github.com/LCAS/ros2_pkg_template/ 
 * Our instructions for students to use it: https://github.com/LCAS/teaching/wiki/CMP3103 
 * The Lincoln Centre for Autonomous Systems (L-CAS): https://lcas.lincoln.ac.uk/ 
 
