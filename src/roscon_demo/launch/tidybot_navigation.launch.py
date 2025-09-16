@@ -26,6 +26,7 @@ from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.actions import Node
 
 
 def generate_launch_description():
@@ -85,6 +86,7 @@ def generate_launch_description():
         ]),
         launch_arguments={
             'use_sim_time': use_sim_time,
+            'world': 'level_2_2.world',
         }.items()
     )
     
@@ -172,6 +174,40 @@ def generate_launch_description():
         actions=[
             LogInfo(msg="Starting RViz..."),
             rviz_launch
+        ]
+    ))
+    
+    # Generate 10 red objects after simulation is ready
+    ld.add_action(TimerAction(
+        period=15.0,
+        actions=[
+            LogInfo(msg="Generating 10 red objects..."),
+            Node(
+                package='uol_tidybot',
+                executable='generate_objects',
+                parameters=[
+                    {'red': True},
+                    {'n_objects': 10}
+                ],
+                output='screen'
+            )
+        ]
+    ))
+    
+    # Generate 10 green objects after red objects
+    ld.add_action(TimerAction(
+        period=18.0,
+        actions=[
+            LogInfo(msg="Generating 10 green objects..."),
+            Node(
+                package='uol_tidybot',
+                executable='generate_objects',
+                parameters=[
+                    {'red': False},
+                    {'n_objects': 10}
+                ],
+                output='screen'
+            )
         ]
     ))
     
