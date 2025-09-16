@@ -6,6 +6,9 @@ FROM lcas.lincoln.ac.uk/devcontainer/ros2-teaching:4 AS base
 USER root
 ENV DEBIAN_FRONTEND=noninteractive
 
+#override the default rosdistro index to use our own maintained one
+ENV ROSDISTRO_INDEX_URL=https://raw.githubusercontent.com/LCAS/rosdistro/refs/heads/master/index-v4.yaml
+
 # Add any additional customizations here if needed
 # For example, install additional packages:FROM lcas.lincoln.ac.uk/devcontainer/ros2-teaching:4FROM nvidia/cuda:11.8-devel-ubuntu22.04
 RUN apt-get update && apt-get install -y \
