@@ -32,6 +32,12 @@ Our containerized solution features:
 
 ### Option 2: Visual Studio Code with DevContainers
 
+
+
+https://github.com/user-attachments/assets/2523747d-7baa-4e1f-89ae-008bd72996c9
+
+
+
 #### Prerequisites
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
