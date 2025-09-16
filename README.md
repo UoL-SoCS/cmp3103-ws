@@ -6,7 +6,11 @@ Welcome to the **RosCon25 workshop demonstration** showcasing a comprehensive GP
 
 ### 🎯 Workshop Overview
 
+[Slides](docs/slides.pdf)
+
 This repository demonstrates how containerized ROS2 environments can transform robotics education by providing students with a fully configured development environment **in under three minutes** from initial setup. The platform runs seamlessly across Windows, Linux, and Mac hosts while maintaining professional development workflows through Visual Studio Code integration.
+
+![slides](docs/2025-09-roscon25-ros-devcontainers.gif)
 
 **Learn more about the workshop:** [https://ros2edu.github.io/](https://ros2edu.github.io/)
 
