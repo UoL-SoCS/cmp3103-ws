@@ -65,7 +65,7 @@ https://github.com/user-attachments/assets/2523747d-7baa-4e1f-89ae-008bd72996c9
    - Wait for container build (~5 minutes on first run, downloading the full image with all dependencies)
 
 4. **Verify Container Environment:**
-   Look for "Dev Container: ..." in the bottom-left corner of VSCode
+   Look for "Dev Container: ..." in the bottom-right corner of VSCode
 
 ## 🤖 Running the Demo
 
